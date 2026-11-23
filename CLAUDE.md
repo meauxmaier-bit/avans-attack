@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-"Avans Attack": a browser-based 2D top-down pixel-art shooter set in the Avans Hogeschoollaan building in Breda. It uses plain HTML5 Canvas and vanilla JavaScript, with no build step, dependencies, package manager or test framework. All in-game text is Dutch.
+"Avans Attack": a browser-based 2D top-down pixel-art shooter set in the Avans Hogeschoollaan building in Breda. It uses plain HTML5 Canvas and vanilla JavaScript, with no build step, dependencies, package manager or test framework. All in-game text, code comments and the README are in Dutch; keep new comments and UI strings in Dutch. Every JS file starts with `'use strict';`.
 
 ## Running
 
 Open `index.html` directly in a browser (it works over `file://`). On Windows, use `Start-Process index.html`.
 
-There is no lint or test tooling. To check changes without a human, run headless Edge/Chrome:
+There is no lint or test tooling. To check changes without a human, run headless Edge (`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`) or Chrome (`C:\Program Files\Google\Chrome\Application\chrome.exe`):
 - `--headless=new --allow-file-access-from-files --dump-dom <url>` runs a small harness page. The harness loads the `js/*.js` files in the same order as `index.html`, then drives `Game.start()` / `Game.update(1/60)` in a loop, setting `Input.mouse.x/y/down` to aim at enemies. It writes results and `window.onerror` output into the DOM.
 - `--screenshot=<file> --window-size=960,540 --virtual-time-budget=3000 <url>` takes a screenshot for a visual check.
 - Keep harness files outside the repo, in a scratch directory.
@@ -37,6 +37,7 @@ There is no lint or test tooling. To check changes without a human, run headless
 - `p` marks the player start; `D` (doors) and `S` (stairs) tiles are enemy spawn points.
 - Tiles are either high (walls, block everything) or low (furniture, `LOW_TILES`, which bullets fly over). `World.solid(tx, ty, mode)` decides passability per mode:
   - `player`: blocked by doors, by low tiles, and by `X` until the exit opens.
+  - `X` stays solid for every other mode (enemies, bullets), even after the exit opens.
   - `walker`: can pass through doors, but not low tiles.
   - `flyer`: can pass through doors and low tiles.
   - `bullet`: stopped by walls and doors only.
