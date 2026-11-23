@@ -58,4 +58,11 @@ There is no lint or test tooling. To check changes without a human, run headless
 
 ## Git workflow
 
-The remote is `origin` → https://github.com/meauxmaier-bit/avans-attack (private), on branch `main`. After every change, make a clean, descriptive commit (one logical change per commit) and `git push`. The user has asked for this standing workflow so every version can be restored.
+The remote is `origin` → https://github.com/meauxmaier-bit/avans-attack (private), on branch `main`.
+
+**Commit and push regularly as you work, so no state or work is ever lost.** The user has asked for this as a standing workflow:
+- Commit each logical change as soon as it works. Don't save everything for one big commit at the end of a task. In longer tasks, commit at every working milestone.
+- Push to GitHub (`git push`) right after each commit, so the remote always has the latest state.
+- Write clean, descriptive commit messages: a short imperative summary line (e.g. "Add dash ability to player"), plus a body explaining *why* if it isn't obvious.
+- Keep one logical change per commit, so any version can be restored or reverted on its own.
+- Before committing, check `git status` / `git diff` so only intended files go in.
